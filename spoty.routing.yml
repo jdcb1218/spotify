@@ -1,0 +1,38 @@
+spoty.releases:
+  path: '/spoty/releases'
+  defaults:
+    _controller: '\Drupal\spoty\Controller\SpotyController::releases'
+    _title: 'Releases top Spoty Music'
+  requirements: 
+    _permission: 'access content'
+
+spoty_forms_contribute:
+  path: 'spoty/configuration'
+  defaults:
+    _form: '\Drupal\spoty\Form\ContributeForm'
+    _title: 'Configuration Rest(Service) Api (Spoty)'
+  requirements:
+    _permission: 'access content'
+
+spoty_forms_search:
+  path: 'spoty/search'
+  defaults:
+    _form: '\Drupal\spoty\Form\SearchForm'
+    _title: 'Search Rest(Service) Api (Spoty)'
+  requirements:
+    _permission: 'access content'
+
+spoty.autocomplete:
+  path: '/spoty-autocomplete/{field_name}/{count}'
+  defaults:
+    _controller: '\Drupal\spoty\Controller\AutocompleteController::handleAutocomplete'
+    _format: json
+  requirements:
+    _access: 'TRUE'
+
+spoty.user:
+  path: 'spoty/artist/{nombre}'
+  defaults: 
+    _controller: '\Drupal\spoty\Controller\SpotyController::artists' 
+  requirements: 
+    _permission: 'access content'

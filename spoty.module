@@ -1,0 +1,65 @@
+<?php
+
+/**
+ * @file
+ * @author Juan Ceballos
+* Primarily Drupal hooks and global API functions.
+ */
+
+use Drupal\Component\Render\MarkupInterface;
+use Drupal\Component\Utility\Html;
+use Drupal\Core\Database\Query\AlterableInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Url;
+
+
+/**
+ * Implements hook_help().
+ */
+
+function spoty_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.spoty':
+
+        $form['releases'] = array(
+          '#type' => 'markup',
+          '#markup' => \Drupal::l(t('Releases'), Url::fromUri('internal:/spoty/releases', array('attributes' => array('target' => '_blank')))) . '<br',
+        );
+ 
+        $form['artist'] = array(
+          '#type' => 'markup',
+          '#markup' => \Drupal::l(t('Search'), Url::fromUri('internal:/spoty/search', array('attributes' => array('target' => '_blank')))) . '<br',
+        );
+
+        $form['search'] = array(
+          '#type' => 'markup',
+          '#markup' => \Drupal::l(t('Configuration spotify'), Url::fromUri('internal:/spoty/configuration', array('attributes' => array('target' => '_blank')))) . '<br',
+        );
+
+      return $form;
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+
+function spoty_theme($existing, $type, $theme, $path) {
+ return array(
+        'events_listing_display' => array(
+            'variables' => array(
+                'events' => NULL,
+            ),
+            'template' => 'events-listing-list',
+        ),
+        'artista_listing_display' => array(
+            'variables' => array(
+                'artistas' => NULL,
+                'profile' => NULL,
+            ),
+            'template' => 'artista-listing-list',
+        ),
+    );
+}

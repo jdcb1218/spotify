@@ -1,0 +1,4 @@
+access all spoty:
+  title: 'Spoty  access control'
+  description: 'Spoty access control when accessing module.'
+  restrict access: TRUE
